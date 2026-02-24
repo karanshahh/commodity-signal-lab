@@ -1,0 +1,18 @@
+# Backtest configuration
+engine:
+  initial_capital: 1_000_000
+  position_sizing: volatility  # fixed | volatility | kelly
+  volatility_target: 0.15
+  max_position_pct: 0.25
+  signal_threshold_long: 0.55
+  signal_threshold_short: 0.45
+
+costs:
+  commission_bps: 5
+  slippage_bps: 3
+  spread_bps: 2
+
+risk:
+  var_confidence: 0.95
+  max_drawdown_limit: 0.20
+  max_exposure_pct: 1.0

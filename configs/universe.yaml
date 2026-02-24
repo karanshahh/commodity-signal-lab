@@ -1,0 +1,25 @@
+# Commodity universe and data sources
+commodities:
+  - ticker: CL=F
+    name: Crude Oil WTI
+    asset_class: energy
+  - ticker: NG=F
+    name: Natural Gas
+    asset_class: energy
+  - ticker: GC=F
+    name: Gold
+    asset_class: metals
+  - ticker: SI=F
+    name: Silver
+    asset_class: metals
+  - ticker: HG=F
+    name: Copper
+    asset_class: metals
+  - ticker: ZS=F
+    name: Soybeans
+    asset_class: agriculture
+
+# Date range for backfill (ISO format)
+date_range:
+  start: "2015-01-01"
+  end: null  # null = today

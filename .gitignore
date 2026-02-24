@@ -1,0 +1,30 @@
+# Data and artifacts
+data/raw/
+data/processed/
+models/
+mlruns/
+reports/*.html
+reports/*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Env
+.env
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/

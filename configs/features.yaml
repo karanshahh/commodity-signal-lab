@@ -1,0 +1,22 @@
+# Feature engineering configuration
+technicals:
+  return_horizons: [1, 5, 10, 21]
+  momentum_horizons: [5, 10, 21]
+  volatility_window: 21
+  rsi_period: 14
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  zscore_window: 21
+
+macro:
+  forward_fill_limit: 5
+  change_lags: [1, 5, 21]
+  surprise_window: 5
+
+regimes:
+  method: kmeans  # hmm | kmeans (hmm requires: pip install hmmlearn)
+  n_states: 3
+  features_for_regime: [returns_21d, volatility_21d]
+  min_samples: 252  # ~1 year

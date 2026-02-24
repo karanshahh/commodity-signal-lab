@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "commodity-signal-lab"
+version = "0.1.0"
+description = "Commodity trading signal & risk modeling framework"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Signal Lab" }]
+dependencies = [
+    "joblib>=1.3.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.4.0",
+    "lightgbm>=4.3.0",
+    "statsmodels>=0.14.0",
+    "mlflow>=2.11.0",
+    "plotly>=5.18.0",
+    "streamlit>=1.30.0",
+    "yfinance>=0.2.36",
+    "pandas-datareader>=0.10.0",
+    "requests>=2.31.0",
+    "pydantic>=2.5.0",
+    "scipy>=1.12.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.2.0",
+    "shap>=0.44.0",
+]
+hmm = ["hmmlearn>=0.3.0"]
+
+[project.scripts]
+fetch-data = "scripts.fetch_data:main"
+build-features = "scripts.build_features:main"
+train = "scripts.train:main"
+backtest = "scripts.backtest:main"
+run-dashboard = "scripts.run_dashboard:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/signal_lab"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

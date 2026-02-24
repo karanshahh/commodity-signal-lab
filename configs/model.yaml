@@ -1,0 +1,33 @@
+# Model configuration
+classifier:
+  model_type: lightgbm
+  params:
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 50
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+    verbose: -1
+
+regressor:
+  model_type: lightgbm
+  params:
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 50
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+    verbose: -1
+
+training:
+  target_horizon: 1
+  test_size: 0.2
+  walk_forward_window: 252
+  feature_importance: true
+  shap_explainer: false
