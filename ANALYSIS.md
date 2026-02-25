@@ -57,7 +57,11 @@ Fetched FRED DGS10: 4036 rows
 | VaR (95%) | -0.26% |
 | CVaR (95%) | -0.63% |
 
-**Note:** These metrics are from a single-commodity, in-sample backtest. Out-of-sample performance and multi-asset robustness would require further validation.
+**Methodology notes:**
+- Single-commodity (CL), in-sample only — no walk-forward or out-of-sample holdout
+- Position sizing: fixed % of capital; no slippage or market impact
+- Total return can appear very high due to compounding; Sharpe and drawdown are more reliable
+- Model accuracy ~50% and R² negative — signals are weak; the framework, not alpha, is the focus
 
 ---
 
@@ -100,12 +104,26 @@ Higher KS values indicate stronger distribution shift. Volatility and return fea
 
 - **LightGBM on Mac:** Requires `brew install libomp`; framework falls back to sklearn otherwise.
 - **FRED rate limits:** Add `FRED_API_KEY` in `.env` for higher limits.
-- **Backtest realism:** Position sizing and costs are simplified; production use would need slippage and execution modeling.
+- **Backtest realism:** Position sizing and costs are simplified; production use would need slippage, execution latency, and market impact.
 - **Regime method:** Default is k-means; HMM requires `pip install hmmlearn`.
+- **Walk-forward:** No rolling retrain or out-of-sample holdout — would be needed for production.
 
 ---
 
-## 8. Reproducibility
+## 8. Things That Might Raise Questions
+
+| Question | Answer |
+|----------|--------|
+| Why is total return so high? | Compounding on a single-asset, in-sample backtest; no walk-forward. Sharpe and drawdown are more meaningful. |
+| Why is classifier accuracy ~50%? | Daily commodity returns are noisy; weak signals are expected. |
+| Why negative R² on the regressor? | Model underperforms a naive mean baseline; common for return prediction. |
+| Why sklearn instead of LightGBM? | LightGBM needs libomp on Mac; framework falls back automatically. |
+| Why k-means for regimes? | Simpler, no extra deps; HMM optional via `pip install hmmlearn`. |
+| Is this production-ready? | No — it’s a learning/portfolio project. Production would need CI/CD, monitoring, and stricter backtesting. |
+
+---
+
+## 9. Reproducibility
 
 ```bash
 pip install -e ".[dev]"
